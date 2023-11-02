@@ -55,3 +55,5 @@ printSubTitle "Current config: $(sed -n 5p config.conf)"
 cd_project_root
 
 printTitle "Installation completed!"
+printSubTitle "To start mining and monitoring run:"
+echo "scripts/start.sh && scripts/monitor.sh"

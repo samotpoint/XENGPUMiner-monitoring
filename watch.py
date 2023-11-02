@@ -126,9 +126,9 @@ WORKER_ID = init_worker()
 
 while True:
     ACCOUNT = get_current_account()
+    time.sleep(5) # Wait a bit for miner to start
     if not ACCOUNT:
         print("Missing account in config.conf")
-        time.sleep(10)
         continue
 
     while is_mining():

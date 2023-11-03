@@ -16,7 +16,7 @@
 ### Install software requirements and clone XENGPUMiner official repo
 
 ```shell
-command -v sudo || apt install -y sudo git &> /dev/null && \
+sudo apt install -y git &> /dev/null || apt install -y sudo git &> /dev/null && \
 git clone https://github.com/samotpoint/XENGPUMiner-utils.git && \
 cd XENGPUMiner-utils && \
 sudo chmod -R 700 scripts && \

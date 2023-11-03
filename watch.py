@@ -118,7 +118,7 @@ def init_worker():
     return worker_id
 
 
-INTERVAL = 60
+INTERVAL = 30
 STARTED_AT = get_timestamp()
 SERVER_ORIGIN = "https://www.xenblocks.app"
 COMMIT_HASH = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).decode("ascii").strip()
@@ -126,7 +126,7 @@ WORKER_ID = init_worker()
 
 while True:
     ACCOUNT = get_current_account()
-    time.sleep(5) # Wait a bit for miner to start
+    time.sleep(3) # Wait a bit for miner to start
     if not ACCOUNT:
         print("Missing account in config.conf")
         continue

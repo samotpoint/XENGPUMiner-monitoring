@@ -14,11 +14,11 @@ printSubTitle "Current ARCH: $CUDA_ARCH_SM"
 printSubTitle "Starting in 2 seconds (To cancel: ctrl+c)"
 sleep 2
 
-printTitle "Updating package list..."
-if ! sudo apt update; then
-  printTitle "Failed to update package list"
-  exit 1
-fi
+#printTitle "Updating package list..."
+#if ! sudo apt update; then
+#  printTitle "Failed to update package list"
+#  exit 1
+#fi
 
 install_package "python3"
 install_package "python3-pip"

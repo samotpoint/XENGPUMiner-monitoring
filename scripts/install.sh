@@ -5,8 +5,21 @@ cd_project_root
 
 printSubTitle "Installing software requirements and cloning XENGPUMiner official repo"
 
-ensure_account
-ensure_cuda_arch
+# Read parameters
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -a) ACCOUNT="$2"; shift ;;
+    esac
+    shift
+done
+echo "$ACCOUNT" >account.txt
+
+CUDA_ARCH_SM="sm_$(nvidia-smi --query-gpu=compute_cap --format=csv,noheader | sed "s/\.//")"
+echo "$CUDA_ARCH_SM" >cuda_arch.txt
+
+
+#ensure_account
+#ensure_cuda_arch
 
 printSubTitle "Current account: $ACCOUNT"
 printSubTitle "Current ARCH: $CUDA_ARCH_SM"

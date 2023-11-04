@@ -103,12 +103,19 @@ def get_all_gpu_found_block_count_and_latest_payload():
         return {"count": 0, "latest_payload": ""}
 
 
+def get_gpu_uuid():
+    try:
+        return subprocess.check_output("nvidia-smi --query-gpu=uuid --format=csv,noheader").decode("ascii").strip()
+    except:
+        return str(uuid.uuid4())
+
+
 def init_worker():
     filename = "watch-worker-id.txt"
 
     if not os.path.isfile(filename):
         file = open(filename, "w")
-        file.write(str(uuid.uuid4()))
+        file.write(get_gpu_uuid())
         file.close()
 
     file = open(filename, "r")
@@ -170,6 +177,7 @@ while True:
         print("Difficulty: ", DIFFICULTY)
         print("Hash rates / GPU: ", HASH_RATES)
         print("Blocks found: ", BLOCKS_FOUND_COUNT)
+        print("Visit: ", "https://www.xenblocks.app/" + ACCOUNT)
 
         if run_locally:
             exit(0)

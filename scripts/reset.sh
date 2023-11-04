@@ -19,7 +19,7 @@ if [ "$CONT" = "y" ]; then
   git reset --hard
   printSubTitle "Deleting XENGPUMiner"
   rm -rf XENGPUMiner
-  printSubTitle "Updating XENGPUMiner-utils"
+  printSubTitle "Updating XENGPUMiner-monitoring"
   git pull origin main
   sudo chmod -R 700 scripts
   printSubTitle "Installing and starting miner/monitoring applications"

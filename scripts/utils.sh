@@ -32,6 +32,17 @@ cd_xengpuminer() {
 }
 
 ensure_account() {
+  # Look for argument -a and set ACCOUNT
+  if [ $# -eq 0 ]; then
+    while [[ "$#" -gt 0 ]]; do
+        case $1 in
+            -a) ACCOUNT="$2"; shift ;;
+        esac
+        shift
+        return 1
+    done
+  fi
+
   if [ -f "account.txt" ]; then
     ACCOUNT="$(cat account.txt)"
   else
@@ -41,10 +52,5 @@ ensure_account() {
 }
 
 ensure_cuda_arch() {
-  if [ -f "cuda_arch.txt" ]; then
-    CUDA_ARCH_SM="$(cat cuda_arch.txt)"
-  else
-    read -p "Enter CUDA ARCH (sm_86, sm_89...): " CUDA_ARCH_SM
-    echo "$CUDA_ARCH_SM" >cuda_arch.txt
-  fi
+  CUDA_ARCH_SM="sm_$(nvidia-smi --query-gpu=compute_cap --format=csv,noheader | sed "s/\.//")"
 }

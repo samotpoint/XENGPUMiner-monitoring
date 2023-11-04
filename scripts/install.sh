@@ -5,21 +5,9 @@ cd_project_root
 
 printSubTitle "Installing software requirements and cloning XENGPUMiner official repo"
 
-# Read parameters
-while [[ "$#" -gt 0 ]]; do
-    case $1 in
-        -a) ACCOUNT="$2"; shift ;;
-    esac
-    shift
-done
-echo "$ACCOUNT" >account.txt
-
-CUDA_ARCH_SM="sm_$(nvidia-smi --query-gpu=compute_cap --format=csv,noheader | sed "s/\.//")"
-echo "$CUDA_ARCH_SM" >cuda_arch.txt
-
-
-#ensure_account
-#ensure_cuda_arch
+# Ensure Account and CUDA Arch
+ensure_account
+ensure_cuda_arch
 
 printSubTitle "Current account: $ACCOUNT"
 printSubTitle "Current ARCH: $CUDA_ARCH_SM"
@@ -68,5 +56,6 @@ printSubTitle "Current config: $(sed -n 5p config.conf)"
 cd_project_root
 
 printTitle "Installation completed!"
-printSubTitle "To start mining and monitoring run:"
-echo "scripts/start.sh && scripts/monitor.sh"
+
+# Start mining and monitoring
+scripts/start.sh && scripts/monitor.sh

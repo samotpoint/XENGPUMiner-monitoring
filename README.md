@@ -17,7 +17,7 @@
 
 ```shell
 sudo apt install -y git &> /dev/null || apt install -y sudo git &> /dev/null && \
-git clone https://github.com/samotpoint/XENGPUMiner-utils.git && \
+git clone https://github.com/samotpoint/XENGPUMiner-monitoring.git && \
 cd XENGPUMiner-utils && \
 sudo chmod -R 700 scripts && \
 scripts/install.sh

@@ -39,6 +39,7 @@ ensure_account() {
             -a) ACCOUNT="$2"; shift ;;
         esac
         shift
+        echo "$ACCOUNT" >account.txt
         return 1
     done
   fi

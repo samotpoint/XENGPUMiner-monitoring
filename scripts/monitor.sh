@@ -14,6 +14,6 @@ sleep 1
 printSubTitle "Worker: $(cat watch-worker-id.txt)"
 
 account_line="$(sed '5q;d' config.conf)"
-echo "visit https://xenblocks.app/${account_line:10:52}"
+echo "visit: https://xenblocks.app/${account_line:10:52}"
 
 cd_project_root

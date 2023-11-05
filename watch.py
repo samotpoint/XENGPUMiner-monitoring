@@ -105,7 +105,8 @@ def get_all_gpu_found_block_count_and_latest_payload():
 
 def get_gpu_uuid():
     try:
-        return subprocess.check_output("nvidia-smi -i=0 --query-gpu=uuid --format=csv,noheader").decode("ascii").strip().replace("GPU-", "")
+        uuid = subprocess.check_output("nvidia-smi -i=0 --query-gpu=uuid --format=csv,noheader").decode("ascii").strip()
+        return uuid.replace("GPU-", "")
     except:
         return str(uuid.uuid4())
 

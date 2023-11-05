@@ -71,7 +71,7 @@ def get_all_hash_rates():
 
 
 def get_nvidia_smi_data():
-    query = "gpu_name,name,driver_version,pcie.link.gen.max,pcie.link.gen.current,temperature.gpu,temperature.memory,utilization.gpu,utilization.memory,memory.total,memory.free,memory.used,power.draw,clocks.current.memory,clocks.current.sm"
+    query = "gpu_name,name,driver_version,pcie.link.gen.max,pcie.link.gen.current,temperature.gpu,temperature.memory,utilization.gpu,utilization.memory,memory.total,memory.free,memory.used,power.draw,clocks.current.memory,clocks.current.sm,uuid"
     try:
         details = subprocess.check_output(
             ["nvidia-smi", "--query-gpu=" + QUERY, "--format=csv,noheader,nounits"]
@@ -105,7 +105,7 @@ def get_all_gpu_found_block_count_and_latest_payload():
 
 def get_gpu_uuid():
     try:
-        return subprocess.check_output("nvidia-smi --query-gpu=uuid --format=csv,noheader").decode("ascii").strip()
+        return subprocess.check_output("nvidia-smi -i=0 --query-gpu=uuid --format=csv,noheader").decode("ascii").strip().replace("GPU-", "")
     except:
         return str(uuid.uuid4())
 

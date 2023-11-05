@@ -53,5 +53,5 @@ ensure_account() {
 }
 
 ensure_cuda_arch() {
-  CUDA_ARCH_SM="sm_$(nvidia-smi --query-gpu=compute_cap --format=csv,noheader | sed "s/\.//")"
+  CUDA_ARCH_SM="sm_$(nvidia-smi -i=0 --query-gpu=compute_cap --format=csv,noheader | sed "s/\.//")"
 }

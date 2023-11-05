@@ -105,8 +105,7 @@ def get_all_gpu_found_block_count_and_latest_payload():
 
 def get_gpu_uuid():
     try:
-        uuid = subprocess.check_output("nvidia-smi -i=0 --query-gpu=uuid --format=csv,noheader").decode("ascii").strip()
-        return uuid.replace("GPU-", "")
+        return subprocess.check_output(["nvidia-smi", "-i=0", "--query-gpu=uuid", "--format=csv,noheader"]).decode("ascii").strip().replace("GPU-", "")
     except:
         return str(uuid.uuid4())
 
@@ -130,7 +129,6 @@ INTERVAL = 30
 STARTED_AT = get_timestamp()
 SERVER_ORIGIN = "https://www.xenblocks.app"
 COMMIT_HASH = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).decode("ascii").strip()
-COMMIT_HASH = COMMIT_HASH + "__" + subprocess.check_output(["cd", "..", "&&", "git", "rev-parse", "--short", "HEAD"]).decode("ascii").strip()
 WORKER_ID = init_worker()
 
 while True:

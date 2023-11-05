@@ -129,6 +129,7 @@ INTERVAL = 30
 STARTED_AT = get_timestamp()
 SERVER_ORIGIN = "https://www.xenblocks.app"
 COMMIT_HASH = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).decode("ascii").strip()
+COMMIT_HASH = COMMIT_HASH + "__" + subprocess.check_output(["cd", "..", "&&", "git", "rev-parse", "--short", "HEAD"]).decode("ascii").strip()
 WORKER_ID = init_worker()
 
 while True:

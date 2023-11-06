@@ -32,24 +32,22 @@ cd_xengpuminer() {
 }
 
 ensure_account() {
-  # Look for argument -a and set ACCOUNT
-  if [ $# -eq 0 ]; then
-    while [[ "$#" -gt 0 ]]; do
-        case $1 in
-            -a) ACCOUNT="$2"; shift ;;
-        esac
-        shift
-        echo "$ACCOUNT" >account.txt
+  if [ -z ${ACCOUNT+x} ]; then
+      # Environment variable ACCOUNT was NOT set
+      # Use account.txt if it exist
+      if [ -f "account.txt" ]; then
+        ACCOUNT="$(cat account.txt)"
+        printSubTitle "Using account: $ACCOUNT (from file account.txt)"
         return 1
-    done
+      else
+        # Prompt user to enter account
+        read -p "Enter account: " ACCOUNT
+      fi
   fi
 
-  if [ -f "account.txt" ]; then
-    ACCOUNT="$(cat account.txt)"
-  else
-    read -p "Enter account: " ACCOUNT
-    echo "$ACCOUNT" >account.txt
-  fi
+  # Environment variable ACCOUNT was set
+  printSubTitle "Saving account information in account.txt"
+  echo "$ACCOUNT" > account.txt
 }
 
 ensure_cuda_arch() {

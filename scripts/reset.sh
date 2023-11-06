@@ -9,7 +9,6 @@ ensure_account
 ensure_cuda_arch
 
 printSubTitle "Account and CUDA Arch to be used during installation"
-printSubTitle "From account.txt and cuda_arch.txt (Update accordingly before proceeding)"
 printSubTitle "$ACCOUNT"
 printSubTitle "$CUDA_ARCH_SM"
 

@@ -4,14 +4,13 @@
 
 ### Assuming:
 
-- You are renting on [vast.ai](https://vast.ai/) (This will most likely work outside Vast but some adjustment may be
-  required depending on your setup)
-- You are using `cuda:12.0.1-devel-ubuntu20.04` image or something equivalent (Debian-based system like Ubuntu)
+- Consider using this template referral link
+  [cloud.vast.ai](https://cloud.vast.ai/?ref_id=90806&template_id=943845b450e59b31720e684755cb9405) before you rent your
+  instance (Do not forget to update the ACCOUNT, click on the edit button and search for `Docker Options`)
+- If you are not renting on Vast.ai you need something equivalent to Debian-based system like Ubuntu
 - You have Nvidia driver and CUDA driver installed
-  - To test both run `nvidia-smi` and `nvcc --version`
+    - To test both run `nvidia-smi` and `nvcc --version`
 - You want to mine using every GPU available
-
-> Most instances on Vast are sm_86 (86 => 8.6), but you can validate here [Wiki CUDA](https://en.wikipedia.org/wiki/CUDA) see `Compute Capability, GPU semiconductors and Nvidia GPU board products` section.
 
 ### Install software requirements and clone XENGPUMiner official repo
 
@@ -51,13 +50,6 @@ scripts/start.sh && scripts/monitor.sh
 scripts/reset.sh
 ```
 
-### From Wiki CUDA
-
-> 8.6 => sm_86
-
-![From Wiki CUDA](docs/wiki_cuda.png)
-
-
 ### To install Nvidia CUDA drivers
 
 [Nvidia Cuda Downloads](https://developer.nvidia.com/cuda-downloads)
@@ -68,3 +60,9 @@ scripts/reset.sh
 export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 ```
+
+### From Wiki CUDA
+
+> 8.6 => sm_86
+
+![From Wiki CUDA](docs/wiki_cuda.png)

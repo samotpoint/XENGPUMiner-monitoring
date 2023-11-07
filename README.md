@@ -4,13 +4,18 @@
 
 <div style="width: 100%; text-align: center">
   <img src="docs/xenblocks-app.jpg" alt="Xenblocks App" style="width:300px"/>
+  <br>
+  <a href="https://www.buymeacoffee.com/samotpoints">
+    <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=samotpoints&button_colour=40DCA5&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" />
+  </a>
 </div>
 
 > This repo aim to make it easier for people to install/monitor [shanhaicoder/XENGPUMiner](https://github.com/shanhaicoder/XENGPUMiner) and it does not modify nor alter the official code in any way.
 
 ### Assuming:
 
-- If you are new to Vast.ai consider using this referral link to subscribe [cloud.vast.ai](https://cloud.vast.ai/?ref_id=90806) it will help me to keep this project alive.
+- If you are new to Vast.ai consider using this referral link to
+  subscribe [cloud.vast.ai](https://cloud.vast.ai/?ref_id=90806) it will help me to keep this project alive.
 - Consider using this template referral link
   [cloud.vast.ai](https://cloud.vast.ai/?ref_id=90806&template_id=943845b450e59b31720e684755cb9405) before you rent your
   instance (Do not forget to update the ACCOUNT, click on the edit button and edit `Docker Options`)

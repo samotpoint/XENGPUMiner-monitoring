@@ -51,5 +51,8 @@ ensure_account() {
 }
 
 ensure_cuda_arch() {
-  CUDA_ARCH_SM="sm_$(nvidia-smi -i=0 --query-gpu=compute_cap --format=csv,noheader | sed "s/\.//")"
+  if [ -z ${CUDA_ARCH_SM+x} ]; then
+    # Environment variable CUDA_ARCH_SM was NOT set
+    CUDA_ARCH_SM="sm_$(nvidia-smi -i=0 --query-gpu=compute_cap --format=csv,noheader | sed "s/\.//")"
+  fi
 }

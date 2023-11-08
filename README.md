@@ -22,14 +22,14 @@
 - If you are not renting on Vast.ai you need something equivalent to Debian-based system like Ubuntu
 - You have Nvidia driver and CUDA driver installed
     - To test both run `nvidia-smi` and `nvcc --version`
-- You want to mine using every GPU available
+- You want to mine using every available GPU
 
-### Install software requirements and clone XENGPUMiner official repo
+### Install software requirements and clone XENGPUMiner official repo (If you are not using Vast.ai template)
 
 ```shell
 sudo apt install -y git &> /dev/null || apt install -y sudo git &> /dev/null && \
-cd ~/ && git clone https://github.com/samotpoint/XENGPUMiner-monitoring.git || echo "Skip cloning XENGPUMiner-monitoring" && \
-cd ~/XENGPUMiner-monitoring && \
+git clone https://github.com/samotpoint/XENGPUMiner-monitoring.git || echo "Skip cloning XENGPUMiner-monitoring" && \
+XENGPUMiner-monitoring && \
 sudo chmod -R 700 scripts && \
 scripts/install.sh # automatically start mining after installation
 ```

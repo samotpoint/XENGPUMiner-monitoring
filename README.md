@@ -29,7 +29,7 @@
 ```shell
 sudo apt install -y git &> /dev/null || apt install -y sudo git &> /dev/null && \
 git clone https://github.com/samotpoint/XENGPUMiner-monitoring.git || echo "Skip cloning XENGPUMiner-monitoring" && \
-XENGPUMiner-monitoring && \
+cd XENGPUMiner-monitoring && \
 sudo chmod -R 700 scripts && \
 scripts/install.sh # automatically start mining after installation
 ```

@@ -57,5 +57,8 @@ cd_project_root
 
 printTitle "Installation completed!"
 
-# Start mining and monitoring
-scripts/start.sh && scripts/monitor.sh
+if [ -z ${IS_DOCKER_BUILD+x} ]; then
+  # Environment variable IS_DOCKER_BUILD was NOT set
+  # Start mining and monitoring
+  scripts/start.sh && scripts/monitor.sh
+fi

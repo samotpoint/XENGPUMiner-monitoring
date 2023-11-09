@@ -4,7 +4,8 @@ source scripts/utils.sh
 cd_xengpuminer
 
 if ! screen -list | grep -q "watcher"; then
-  printTitle "Starting python3 watch.py"
+  printTitle "Starting Monitoring"
+  printSubTitle "Starting python3 watch.py"
   screen -S "watcher" -dm bash -c "python3 watch.py"
 else
   printTitle "Nothing to start, you are already monitoring!"

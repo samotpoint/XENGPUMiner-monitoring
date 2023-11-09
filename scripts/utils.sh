@@ -31,23 +31,6 @@ cd_xengpuminer() {
   cd "$ROOT_DIR/XENGPUMiner" || exit 1
 }
 
-validate_vast_requirements() {
-  printTitle "Validating Vast.ai requirements"
-  if [ -z ${ACCOUNT+x} ]; then
-    # Environment variable ACCOUNT was NOT set
-    if [ -z ${IS_VAST_AI_ON_START+x} ]; then
-      # At this point we assume the user is connected (SSH) to Vast.ai instance
-      printSubTitle "Warning: missing environment variable 'ACCOUNT'"
-      ensure_account
-    else
-      printSubTitle "Error: missing environment variable 'ACCOUNT' during onstart.sh from Vast.ai template"
-      printSubTitle "Before using this template use the edit button and update 'Docker Options' accordingly:"
-      echo '-e ACCOUNT="replace_this_with_your_account"'
-      printSubTitle "Now exiting installation process before completion."
-    fi
-  fi
-}
-
 # Ensure account use following order
 # 1. Look for environment variable ACCOUNT
 # 2. Look for account.txt

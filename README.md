@@ -32,7 +32,7 @@ sudo apt-get install -y git &>/dev/null || apt-get install -y sudo git &>/dev/nu
 git clone https://github.com/samotpoint/XENGPUMiner-monitoring.git || echo "Skip cloning XENGPUMiner-monitoring" && \
 cd XENGPUMiner-monitoring && \
 sudo chmod -R 700 scripts && \
-scripts/install.sh
+scripts/boot.sh
 ```
 
 > visit https://www.xenblocks.app/replace_this_with_your_account to monitor your instances (ALPHA)

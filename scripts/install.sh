@@ -47,12 +47,6 @@ printTitle "Updating config.conf with $ACCOUNT"
 sed -i "s/account = 0x24691e54afafe2416a8252097c9ca67557271475/account = $ACCOUNT/g" config.conf || echo "Skip sed account"
 printSubTitle "Current config: $(sed -n 5p config.conf)"
 
-cd_project_root
-
 printTitle "Installation completed!"
 
-if [ -z ${IS_DOCKER_BUILD+x} ]; then
-  # Environment variable IS_DOCKER_BUILD was NOT set
-  # Start mining and monitoring
-  scripts/start.sh && scripts/monitor.sh
-fi
+cd_project_root

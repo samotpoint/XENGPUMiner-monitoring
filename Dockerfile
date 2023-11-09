@@ -18,7 +18,6 @@ COPY . .
 
 RUN chmod -R 700 scripts
 RUN DEBIAN_FRONTEND=noninteractive && \
-    IS_DOCKER_BUILD=true && \
     CUDA_ARCH_SM=sm_86 && \
     ACCOUNT=0x24691e54afafe2416a8252097c9ca67557271475 && \
     scripts/install.sh
@@ -27,4 +26,4 @@ RUN rm account.txt
 
 EXPOSE 22
 
-CMD ["/usr/sbin/sshd", "-D", "&&", "scripts/install.sh"]
+CMD ["/usr/sbin/sshd", "-D"]

@@ -11,7 +11,9 @@ else
 fi
 
 sleep 1
-printSubTitle "Worker: $(cat watch-worker-id.txt)"
+if test -f "watch-worker-id.txt"; then
+  printSubTitle "Worker: $(cat watch-worker-id.txt)"
+fi
 
 account_line="$(sed '5q;d' config.conf)"
 echo "visit: https://xenblocks.app/${account_line:10:52}"

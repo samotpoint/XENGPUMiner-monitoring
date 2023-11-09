@@ -26,12 +26,15 @@
 
 ### Install software requirements and clone XENGPUMiner official repo (If you are not using Vast.ai template)
 
+> Automatically start mining after installation
+
 ```shell
-sudo apt install -y git &> /dev/null || apt install -y sudo git &> /dev/null && \
+sudo apt update &>/dev/null || apt update &>/dev/null && \
+sudo apt install -y git &>/dev/null || apt install -y sudo git &>/dev/null && \
 git clone https://github.com/samotpoint/XENGPUMiner-monitoring.git || echo "Skip cloning XENGPUMiner-monitoring" && \
 cd XENGPUMiner-monitoring && \
 sudo chmod -R 700 scripts && \
-scripts/install.sh # automatically start mining after installation
+scripts/install.sh
 ```
 
 > visit https://www.xenblocks.app/replace_this_with_your_account to monitor your instances (BETA)

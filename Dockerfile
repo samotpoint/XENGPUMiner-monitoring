@@ -7,16 +7,17 @@ ENV IS_DOCKER_BUILD=true
 ENV CUDA_ARCH_SM=sm_86
 ENV ACCOUNT=0x22dE03d0f29eFb1fCF01e47EF74DcC4008928BA2
 
-WORKDIR /xenblocks
+RUN apt update
+RUN apt install -y sudo git tzdata build-essential openssh-server
+RUN mkdir -p /run/sshd
 
-RUN apt update && apt install -y sudo git tzdata
-RUN git clone https://github.com/samotpoint/XENGPUMiner-monitoring.git
+WORKDIR /XENGPUMiner-monitoring
 
-WORKDIR /xenblocks/XENGPUMiner-monitoring
+COPY . .
 
 RUN sudo chmod -R 700 scripts
 RUN scripts/install.sh
 
-ENTRYPOINT ["bash"]
+EXPOSE 22
 
-CMD ["scripts/start.sh", "&&", "scripts/monitor.sh"]
+CMD ["/usr/sbin/sshd", "-D", "&&", "scripts/start.sh", "&&", "scripts/monitor.sh"]

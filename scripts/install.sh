@@ -15,12 +15,6 @@ printSubTitle "Current ARCH: $CUDA_ARCH_SM"
 printSubTitle "Starting in 2 seconds (To cancel: ctrl+c)"
 sleep 2
 
-#printTitle "Updating package list..."
-#if ! sudo apt update; then
-#  printTitle "Failed to update package list"
-#  exit 1
-#fi
-
 install_package "python3"
 install_package "python3-pip"
 install_package "cmake"
@@ -32,7 +26,7 @@ install_package "nano"
 if [ ! -d "XENGPUMiner" ]; then
   printTitle "Cloning XENGPUMiner official repo"
   git clone https://github.com/shanhaicoder/XENGPUMiner.git
-  cp watch.py XENGPUMiner/watch.py &>/dev/null
+  cp watch.py XENGPUMiner/watch.py &>/dev/null || echo "Skip cp watch.py"
 fi
 
 cd_xengpuminer

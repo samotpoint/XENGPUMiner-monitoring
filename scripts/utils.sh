@@ -33,16 +33,16 @@ cd_xengpuminer() {
 
 ensure_account() {
   if [ -z ${ACCOUNT+x} ]; then
-      # Environment variable ACCOUNT was NOT set
-      # Use account.txt if it exist
-      if [ -f "account.txt" ]; then
-        ACCOUNT="$(cat account.txt)"
-        printSubTitle "Using account: $ACCOUNT (from file account.txt)"
-        return 1
-      else
-        # Prompt user to enter account
-        read -p "Enter account: " ACCOUNT
-      fi
+    # Environment variable ACCOUNT was NOT set
+    # Use account.txt if it exist
+    if [ -f "account.txt" ]; then
+      ACCOUNT="$(cat account.txt)"
+      printSubTitle "Using account: $ACCOUNT (from file account.txt)"
+      return 1
+    else
+      # Prompt user to enter account
+      read -p "Enter account: " ACCOUNT
+    fi
   fi
 
   # Environment variable ACCOUNT was set

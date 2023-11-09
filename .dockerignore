@@ -1,0 +1,6 @@
+local/
+venv/
+docs/
+.gitignore
+README.md
+.git

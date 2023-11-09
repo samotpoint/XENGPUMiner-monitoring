@@ -36,9 +36,9 @@ printTitle "Building xengpuminer (could take a few minutes)"
 rm -rf build &>/dev/null
 rm xengpuminer &>/dev/null
 
-sudo chmod +x build.sh xengpuminer &>/dev/null
+sudo chmod +x build.sh &>/dev/null
 ./build.sh -cuda_arch ${CUDA_ARCH_SM} &>/dev/null
-sudo chmod +x xengpuminer xengpuminer &>/dev/null
+sudo chmod +x xengpuminer &>/dev/null
 
 printTitle "Installing requirements.txt (could take a few minutes)"
 pip3 install -U -r requirements.txt &>/dev/null

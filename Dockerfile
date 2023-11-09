@@ -15,7 +15,8 @@ WORKDIR /XENGPUMiner-monitoring
 
 COPY . .
 
-RUN sudo chmod -R 700 scripts
+RUN chmod -R 700 scripts
+RUN chmod 700 onstart.sh
 RUN scripts/install.sh
 
 EXPOSE 22

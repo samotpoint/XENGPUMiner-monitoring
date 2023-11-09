@@ -1,6 +1,10 @@
+.DS_Store
+.idea/
+.git/
 local/
 venv/
 docs/
-.gitignore
-README.md
-.git
+XENGPUMiner/
+
+/README.md
+/account.txt

@@ -5,8 +5,8 @@
 <div style="width: 100%; text-align: center">
   <img src="docs/xenblocks-app.jpg" alt="Xenblocks App" style="width:300px"/>
   <br>
-  <a href="https://www.buymeacoffee.com/samotpoints" alt="Buy me a coffee">
-    <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=samotpoints&button_colour=40DCA5&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" />
+  <a href="https://www.buymeacoffee.com/samotpoints">
+    <img alt="Buy me a coffee" src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=samotpoints&button_colour=40DCA5&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" />
   </a>
 </div>
 

@@ -110,7 +110,22 @@ def get_gpu_uuid():
         return str(uuid.uuid4())
 
 
-def init_worker():
+def get_vast_ai_data():
+    try:
+        CONTAINER_ID = subprocess.check_output(["echo", "$CONTAINER_ID"]).decode("ascii").strip()
+        VAST_CONTAINERLABEL = subprocess.check_output(["echo", "$VAST_CONTAINERLABEL"]).decode("ascii").strip()
+        return {
+            "CONTAINER_ID": CONTAINER_ID,
+            "VAST_CONTAINERLABEL": VAST_CONTAINERLABEL,
+        }
+    except:
+        return {
+            "CONTAINER_ID": "",
+            "VAST_CONTAINERLABEL": "",
+        }
+
+
+def ensure_worker_id():
     filename = "watch-worker-id.txt"
 
     if not os.path.isfile(filename):
@@ -129,7 +144,7 @@ INTERVAL = 30
 STARTED_AT = get_timestamp()
 SERVER_ORIGIN = "https://www.xenblocks.app"
 COMMIT_HASH = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).decode("ascii").strip()
-WORKER_ID = init_worker()
+WORKER_ID = ensure_worker_id()
 
 while True:
     ACCOUNT = get_current_account()
@@ -154,6 +169,8 @@ while True:
         QUERY = nvidia_data["query"]
         DETAILS = nvidia_data["details"]
 
+        VAST_DATA = get_vast_ai_data()
+
         payload = {
             "ACCOUNT": ACCOUNT,
             "WORKER_ID": WORKER_ID,
@@ -170,6 +187,8 @@ while True:
             "LATEST_BLOCKS_FOUND": LATEST_BLOCKS_FOUND,
             "QUERY": QUERY,
             "DETAILS": DETAILS,
+
+            "VAST_DATA": VAST_DATA
         }
 
         print("Account: ", ACCOUNT)
@@ -179,6 +198,7 @@ while True:
         print("Blocks found: ", BLOCKS_FOUND_COUNT)
         print("Visit: ", "https://www.xenblocks.app/" + ACCOUNT)
 
+        # Prevent sending data to server if watch.py was triggered by scripts/test.sh (manual test)
         if run_locally:
             exit(0)
 

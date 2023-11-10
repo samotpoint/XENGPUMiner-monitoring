@@ -22,8 +22,10 @@ def get_timestamp():
 
 def is_mining():
     try:
-        return os.system('ps -x -o command | grep -x "python3 miner.py --logging-on"') == 0
+        process_count = int(subprocess.check_output('ps -x -o command | grep -c "python3 miner.py"', shell=True).decode("ascii").strip())
+        return process_count > 1
     except:
+        print("Error while running is_mining")
         return False
 
 

@@ -23,7 +23,7 @@ if [ "$CONT" = "y" ]; then
   git stash pop
   sudo chmod -R 700 scripts
   printSubTitle "Installing and starting miner/monitoring applications"
-  scripts/install.sh
+  scripts/boot.sh
   printSubTitle "Reset completed!"
   printSubTitle "To manually test run:"
   echo "scripts/test.sh"

@@ -1,30 +1,26 @@
 # XENGPUMiner-monitoring
 
-### Easy installation and monitoring scripts
-
 <div style="width: 100%; text-align: center">
-  <img src="docs/xenblocks-app.jpg" alt="Xenblocks App" style="width:300px"/>
-  <br>
-  <a href="https://www.buymeacoffee.com/samotpoints">
-    <img alt="Buy me a coffee" src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=samotpoints&button_colour=40DCA5&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" />
-  </a>
+  <img src="docs/xenblocks-app-banner.png" alt="Xenblocks App" style="height:350px"/>
 </div>
 
 > This repo aim to make it easier for people to install/monitor [shanhaicoder/XENGPUMiner](https://github.com/shanhaicoder/XENGPUMiner) and it does not modify nor alter the official code in any way.
 
 ### Assuming:
 
-- If you are new to Vast.ai consider using this referral link to
-  subscribe [cloud.vast.ai](https://cloud.vast.ai/?ref_id=90806) it will help me to keep this project alive.
-- Template link for Vast.ai coming soon.
-- If you are not renting on Vast.ai you need something equivalent to Debian-based system like Ubuntu
+- You are renting on Vast.ai using the `cuda:12.0.1-devel-ubuntu20.04` template or something equivalent to Debian-based
+  system like Ubuntu
 - You have Nvidia driver and CUDA driver installed
     - To test both run `nvidia-smi` and `nvcc --version`
-- You want to mine using all GPU (0 CPU)
+- You want to mine using all GPU and 0 CPU
 
-### Install software requirements and clone XENGPUMiner official repo (If you are not using Vast.ai template)
+### Install software requirements and clone shanhaicoder/XENGPUMiner
 
-> Automatically start mining after installation
+Regarding the account used for mining every script will check in this order (see `ensure_account` in utils.sh)
+
+1. Environment variable `ACCOUNT`
+1. A file `account.txt`
+1. Prompt the user to enter the account than save it to `account.txt`
 
 ```shell
 sudo apt-get update &>/dev/null || apt-get update &>/dev/null && \
@@ -35,7 +31,8 @@ sudo chmod -R 700 scripts && \
 scripts/boot.sh
 ```
 
-> visit https://www.xenblocks.app/replace_this_with_your_account to monitor your instances (ALPHA)
+- Automatically start mining after installation
+- Visit [xenblocks.app](https://www.xenblocks.app) to monitor your instances
 
 ### To manually test your setup
 
@@ -49,7 +46,7 @@ scripts/test.sh
 scripts/stop.sh
 ```
 
-### To start mining (Only if you stopped)
+### To restart mining and monitoring
 
 ```shell
 scripts/start.sh && scripts/monitor.sh
@@ -57,27 +54,32 @@ scripts/start.sh && scripts/monitor.sh
 
 ### To update the whole project to the latest version
 
-> Automatically stop and restart everything after installation
+This script will
+
+- Automatically stop your mining/monitoring process
+- Pull the latest version of both `XENGPUMiner-monitoring` and `shanhaicoder/XENGPUMiner`
+- Rebuild XENGPUMiner
+- Start mining using the account stored in `account.txt` (This file was saved by you during the installation)
 
 ```shell
 scripts/reset.sh
 ```
 
-> Docker Hub https://hub.docker.com/repository/docker/samotpoint/xengpuminer-monitoring (BETA)
+## To support this project
 
-### To install Nvidia CUDA drivers
+Any form of donation is much appreciated and will be invested in this project.
 
-[Nvidia Cuda Downloads](https://developer.nvidia.com/cuda-downloads)
+<div style="width: 100%; text-align: center">
+  <a href="https://www.buymeacoffee.com/samotpoints">
+    <img alt="Buy me a coffee" src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=samotpoints&button_colour=40DCA5&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" />
+  </a>
+</div>
 
-> CUDA path were not mapped properly. I had to add those line at the end of my ~/.bashrc
+- If you are new to Vast.ai consider using this referral link to
+  subscribe [cloud.vast.ai](https://cloud.vast.ai/?ref_id=90806)
 
-```shell
-export PATH="/usr/local/cuda/bin:$PATH"
-export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
-```
+## Public Docker image on Docker Hub
 
-### From Wiki CUDA
+> This Docker image is still a work in progress, use at your own risk!
 
-> 8.6 => sm_86
-
-![From Wiki CUDA](docs/wiki_cuda.png)
+[samotpoint/xengpuminer-monitoring](https://hub.docker.com/repository/docker/samotpoint/xengpuminer-monitoring)

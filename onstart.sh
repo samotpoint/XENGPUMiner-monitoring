@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source /root/XENGPUMiner-monitoring/scripts/utils.sh
+cd /root/XENGPUMiner-monitoring || exit
+
+source scripts/utils.sh
 
 printTitle "Validating Vast.ai requirements"
 
@@ -16,10 +18,7 @@ if [ -z ${ACCOUNT+x} ]; then
   echo "/root/XENGPUMiner-monitoring/scripts/install.sh"
   echo "At some point during the installation you will be prompt to enter your account."
   printSubTitle "Now exiting!"
+  exit 0
 fi
 
-/root/XENGPUMiner-monitoring/scripts/install.sh
-
-echo "To Monitor visit: https://www.xenblocks.app"
-echo "To manually test connect to your instance then run:"
-echo "scripts/test.sh"
+./scripts/boot.sh

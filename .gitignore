@@ -1,6 +1,7 @@
-.idea/
 .DS_Store
-
-/local/
-
+.idea/
+local/
+venv/
+XENGPUMiner/
+/README.md
 /account.txt

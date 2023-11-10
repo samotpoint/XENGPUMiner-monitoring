@@ -37,7 +37,7 @@ rm -rf build &>/dev/null
 rm xengpuminer &>/dev/null
 
 sudo chmod +x build.sh &>/dev/null
-./build.sh -cuda_arch ${CUDA_ARCH_SM} &>/dev/null
+./build.sh -cuda_arch "$CUDA_ARCH_SM" &>/dev/null
 sudo chmod +x xengpuminer &>/dev/null
 
 printTitle "Installing requirements.txt (could take a few minutes)"

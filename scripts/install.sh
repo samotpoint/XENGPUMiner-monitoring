@@ -25,7 +25,7 @@ install_package "nano"
 
 if [ ! -d "XENGPUMiner" ]; then
   printTitle "Cloning XENGPUMiner official repo"
-  git clone https://github.com/shanhaicoder/XENGPUMiner.git
+  git clone https://github.com/shanhaicoder/XENGPUMiner.git || echo "Skip cloning shanhaicoder/XENGPUMiner.git"
   cp watch.py XENGPUMiner/watch.py &>/dev/null || echo "Skip cp watch.py"
 fi
 

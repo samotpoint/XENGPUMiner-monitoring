@@ -15,10 +15,10 @@ if [ -z ${ACCOUNT+x} ]; then
   printSubTitle "To start mining"
   printSubTitle "Option 1. Delete this instance, update the template and rent a new instance"
   printSubTitle "Option 2. SSH in this instance, run:"
-  echo "/root/XENGPUMiner-monitoring/scripts/install.sh"
-  echo "At some point during the installation you will be prompt to enter your account."
+  echo "cd /root/XENGPUMiner-monitoring && ./scripts/install.sh"
+  printSubTitle "At some point during the installation you will be prompt to enter your account."
   printSubTitle "Now exiting!"
-  exit 0
+  exit 1
 fi
 
 ./scripts/boot.sh

@@ -141,8 +141,17 @@ def ensure_worker_id():
 
     return worker_id
 
+INTERVAL_COUNT = 0
+INTERVAL_RAPPID = 15
+INTERVAL_NORMAL = 60
+def get_push_metrics_interval():
+    # Ensure higher interval at the begging to provide better response time
+    if INTERVAL_COUNT > ((60 * 5) / INTERVAL_RAPPID):
+        INTERVAL_COUNT +=1
+        return INTERVAL_RAPPID
 
-INTERVAL = 30
+    return INTERVAL_NORMAL
+
 STARTED_AT = get_timestamp()
 SERVER_ORIGIN = "https://www.xenblocks.app"
 COMMIT_HASH = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).decode("ascii").strip()
@@ -150,12 +159,13 @@ WORKER_ID = ensure_worker_id()
 
 while True:
     ACCOUNT = get_current_account()
-    time.sleep(3) # Wait a bit for miner to start
+    time.sleep(5) # Wait a bit for miner to start
     if not ACCOUNT:
         print("Missing account in config.conf")
         continue
 
     while is_mining():
+        INTERVAL = get_push_metrics_interval()
         TIMESTAMP = get_timestamp()
         DIFFICULTY = get_difficulty()
         HASH_RATES = get_all_hash_rates()
@@ -178,6 +188,7 @@ while True:
             "WORKER_ID": WORKER_ID,
             "COMMIT_HASH": COMMIT_HASH,
             "STARTED_AT": STARTED_AT,
+            "INTERVAL": INTERVAL,
 
             "TIMESTAMP": TIMESTAMP,
             "DIFFICULTY": DIFFICULTY,

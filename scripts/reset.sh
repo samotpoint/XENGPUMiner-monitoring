@@ -28,6 +28,9 @@ if [ "$CONT" = "y" ]; then
   printSubTitle "To manually test run:"
   echo "scripts/test.sh"
 else
-  echo "Canceled"
+  printSubTitle "To update the account run:"
+  echo "rm account.txt"
+  echo "then run scripts/reset.sh (you should be prompt to enter your account)"
+  echo "Reset canceled, nothing was changed"
   exit 1
 fi

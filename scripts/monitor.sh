@@ -14,6 +14,8 @@ fi
 sleep 1
 if test -f "watch-worker-id.txt"; then
   printSubTitle "Worker: $(cat watch-worker-id.txt)"
+else
+  printSubTitle "Missing watch-worker-id.txt"
 fi
 
 account_line="$(sed '5q;d' config.conf)"

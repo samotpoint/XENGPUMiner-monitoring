@@ -145,6 +145,10 @@ INTERVAL_COUNT = 0
 INTERVAL_RAPPID = 15
 INTERVAL_NORMAL = 60
 def get_push_metrics_interval():
+    global INTERVAL_COUNT
+    global INTERVAL_RAPPID
+    global INTERVAL_NORMAL
+
     # Ensure higher interval at the begging to provide better response time
     if INTERVAL_COUNT > ((60 * 5) / INTERVAL_RAPPID):
         INTERVAL_COUNT +=1

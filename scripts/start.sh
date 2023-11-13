@@ -3,6 +3,8 @@
 source scripts/utils.sh
 cd_xengpuminer
 
+screen -wipe
+
 MINER_COUNT=$(ps -x -o command | grep -c "python3 miner.py")
 
 if ((MINER_COUNT < 2)); then

@@ -114,17 +114,10 @@ def get_gpu_uuid():
 
 def get_vast_ai_data():
     try:
-        CONTAINER_ID = subprocess.check_output(["echo", "${CONTAINER_ID%x}"]).decode("ascii").strip()
-        VAST_CONTAINERLABEL = subprocess.check_output(["echo", "${VAST_CONTAINERLABEL%x}"]).decode("ascii").strip()
-        return {
-            "CONTAINER_ID": CONTAINER_ID,
-            "VAST_CONTAINERLABEL": VAST_CONTAINERLABEL,
-        }
+        vast_ai_data = subprocess.check_output(["cat", "vast-data.txt"]).decode("ascii").strip()
+        return vast_ai_data
     except:
-        return {
-            "CONTAINER_ID": "",
-            "VAST_CONTAINERLABEL": "",
-        }
+        return ""
 
 
 def ensure_worker_id():

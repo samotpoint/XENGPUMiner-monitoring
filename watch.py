@@ -135,19 +135,25 @@ def ensure_worker_id():
     return worker_id
 
 INTERVAL_COUNT = 0
-INTERVAL_RAPPID = 15
-INTERVAL_NORMAL = 60
+INTERVAL_RAPPID = 5
+INTERVAL_NORMAL = 15
+INTERVAL_DEFAULT = 45
 def get_push_metrics_interval():
     global INTERVAL_COUNT
     global INTERVAL_RAPPID
     global INTERVAL_NORMAL
 
-    # Ensure higher interval at the begging to provide better response time
-    if INTERVAL_COUNT > ((60 * 5) / INTERVAL_RAPPID):
-        INTERVAL_COUNT +=1
+    print(INTERVAL_COUNT)
+
+    if (INTERVAL_COUNT < 5):
+        INTERVAL_COUNT += 1
         return INTERVAL_RAPPID
 
-    return INTERVAL_NORMAL
+    if (INTERVAL_COUNT < 10):
+        INTERVAL_COUNT += 1
+        return INTERVAL_NORMAL
+
+    return INTERVAL_DEFAULT
 
 STARTED_AT = get_timestamp()
 SERVER_ORIGIN = "https://www.xenblocks.app"

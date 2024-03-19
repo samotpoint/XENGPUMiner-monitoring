@@ -49,4 +49,9 @@ printSubTitle "Current config: $(sed -n 5p config.conf)"
 
 printTitle "Installation completed!"
 
+cat > ./vast-data.txt << EOL
+${VAST_CONTAINERLABEL}
+${CONTAINER_ID}
+EOL
+
 cd_project_root

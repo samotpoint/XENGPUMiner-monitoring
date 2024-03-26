@@ -4,6 +4,7 @@ import requests
 import argparse
 import uuid
 import os
+import re
 
 # Set up argument parser
 parser = argparse.ArgumentParser(description="Optional arguments.")
@@ -90,19 +91,45 @@ def get_gpu_found_blocks_tmp_updated_at():
         return ""
 
 
-def get_all_gpu_found_block_count_and_latest_payload():
+def get_all_gpu_found_block_count():
     try:
+        stored_targets = ['XEN11', 'XUNI']
+
+        block_count = 0
+        xuni_count = 0
+        xenblock_count = 0
+        super_block_count = 0
+
         file = open("payload.log", "r")
         lines = file.readlines()
         file.close()
-        count = 0
-        last_line = ""
         for line in lines:
-            last_line = line
-            count += 1
-        return {"count": count, "latest_payload": last_line}
+            block_count += 1
+            only_hashed_data = line.strip().split("$")[5][:86]
+            for target in stored_targets:
+                if target in only_hashed_data:
+                    if re.search("XUNI[0-9]", only_hashed_data):
+                        xuni_count += 1
+                    elif target == "XEN11":
+                        capital_count = sum(1 for char in re.sub('[0-9]', '', only_hashed_data) if char.isupper())
+                        if capital_count >= 50:
+                            super_block_count += 1
+                        else:
+                            xenblock_count += 1
+
+        return {
+            "count": block_count,
+            "xuni_count": xuni_count,
+            "xenblock_count": xenblock_count,
+            "super_block_count": super_block_count
+        }
     except:
-        return {"count": 0, "latest_payload": ""}
+        return {
+            "count": 0,
+            "xuni_count": 0,
+            "xenblock_count": 0,
+            "super_block_count": 0
+        }
 
 
 def get_gpu_uuid():
@@ -175,9 +202,8 @@ while True:
         PID_PYTHON3 = get_all_pids(["pidof", "python3"])
         PID_XENGPUMINER = get_all_pids(["pidof", "xengpuminer"])
 
-        count_and_latest_payload = get_all_gpu_found_block_count_and_latest_payload()
+        count_and_latest_payload = get_all_gpu_found_block_count()
         BLOCKS_FOUND_COUNT = count_and_latest_payload["count"]
-        BLOCKS_FOUND_LATEST_PAYLOAD = count_and_latest_payload["latest_payload"]
         LATEST_BLOCKS_FOUND = get_gpu_found_blocks_tmp_updated_at()
 
         nvidia_data = get_nvidia_smi_data()
@@ -199,7 +225,9 @@ while True:
             "PID_PYTHON3": PID_PYTHON3,
             "PID_XENGPUMINER": PID_XENGPUMINER,
             "BLOCKS_FOUND_COUNT": BLOCKS_FOUND_COUNT,
-            "BLOCKS_FOUND_LATEST_PAYLOAD": BLOCKS_FOUND_LATEST_PAYLOAD,
+            "BLOCKS_XUNI": count_and_latest_payload["xuni_count"],
+            "BLOCKS_XENBLOCK": count_and_latest_payload["xenblock_count"],
+            "BLOCKS_SUPER": count_and_latest_payload["super_block_count"],
             "LATEST_BLOCKS_FOUND": LATEST_BLOCKS_FOUND,
             "QUERY": QUERY,
             "DETAILS": DETAILS,

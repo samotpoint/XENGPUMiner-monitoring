@@ -12,8 +12,17 @@ ensure_cuda_arch
 printSubTitle "Current account: $ACCOUNT"
 printSubTitle "Current ARCH: $CUDA_ARCH_SM"
 
-printSubTitle "Starting in 2 seconds (To cancel: ctrl+c)"
-sleep 2
+printSubTitle "Reporting to xenblocks.app that a worker is booting"
+
+# Ensure wget is installed
+install_package "wget"
+GPU_DATA=$(nvidia-smi -i=0 --query-gpu=name,uuid --format=csv,noheader)
+wget --quiet \
+  --method POST \
+  --header 'content-type: application/json' \
+  --body-data "{\"ACCOUNT\":\"$ACCOUNT\",\"GPU_DATA\":\"$GPU_DATA\",\"VAST_ID\":\"$VAST_CONTAINERLABEL\"}" \
+  --output-document \
+  - "https://xenblocks.app/api/booting/account/$ACCOUNT"
 
 install_package "python3"
 install_package "python3-pip"

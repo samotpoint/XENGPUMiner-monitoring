@@ -63,4 +63,7 @@ ${VAST_CONTAINERLABEL}
 ${CONTAINER_ID}
 EOL
 
+# Ensure difficulty will start with at least 100k
+echo "100000" > ./difficulty.txt
+
 cd_project_root

@@ -16,11 +16,15 @@ printSubTitle "Reporting to xenblocks.app that a worker is booting"
 
 # Ensure wget is installed
 install_package "wget"
+
+ensure_vast_id
+printSubTitle "VAST_ID: $VAST_ID (only relevant for Vast.ai users)"
+
 GPU_DATA=$(nvidia-smi -i=0 --query-gpu=name,uuid --format=csv,noheader)
 wget --quiet \
   --method POST \
   --header 'content-type: application/json' \
-  --body-data "{\"ACCOUNT\":\"$ACCOUNT\",\"GPU_DATA\":\"$GPU_DATA\",\"VAST_ID\":\"$VAST_CONTAINERLABEL\"}" \
+  --body-data "{\"ACCOUNT\":\"$ACCOUNT\",\"GPU_DATA\":\"$GPU_DATA\",\"VAST_ID\":\"$VAST_ID\"}" \
   --output-document \
   - "https://xenblocks.app/api/booting/account/$ACCOUNT"
 

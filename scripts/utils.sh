@@ -62,3 +62,15 @@ ensure_cuda_arch() {
     CUDA_ARCH_SM="sm_$(nvidia-smi -i=0 --query-gpu=compute_cap --format=csv,noheader | sed "s/\.//")"
   fi
 }
+
+ensure_vast_id() {
+    echo "Running ensure_vast_id"
+    if [ -z ${VAST_CONTAINERLABEL+x} ]; then
+      # Environment variable VAST_CONTAINERLABEL was NOT set
+      VAST_ID="$VAST_CONTAINERLABEL"
+    fi
+    if [ -z ${VAST_ID+x} ]; then
+      # Environment variable VAST_ID was NOT set
+      VAST_ID="$(cat ~/.vast_containerlabel)"
+    fi
+}

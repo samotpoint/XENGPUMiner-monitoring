@@ -65,6 +65,8 @@ ensure_cuda_arch() {
 
 ensure_vast_id() {
     echo "Running ensure_vast_id"
+    echo "VAST_CONTAINERLABEL: $VAST_CONTAINERLABEL"
+    
     if [ -z ${VAST_CONTAINERLABEL+x} ]; then
       # Environment variable VAST_CONTAINERLABEL was NOT set
       VAST_ID="$VAST_CONTAINERLABEL"
@@ -73,4 +75,7 @@ ensure_vast_id() {
       # Environment variable VAST_ID was NOT set
       VAST_ID="$(cat ~/.vast_containerlabel)"
     fi
+    
+    echo "VAST_ID: $VAST_ID"
 }
+

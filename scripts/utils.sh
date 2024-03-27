@@ -67,13 +67,12 @@ ensure_vast_id() {
     echo "Running ensure_vast_id"
     if [ -z ${VAST_CONTAINERLABEL+x} ]; then
       # Environment variable VAST_CONTAINERLABEL was NOT set
-      VAST_ID="$VAST_CONTAINERLABEL"
-      echo "1VAST_CONTAINERLABEL: $VAST_CONTAINERLABEL"
+      VAST_CONTAINERLABEL="$(cat ~/.vast_containerlabel)"
+      echo "VAST_CONTAINERLABEL: $VAST_CONTAINERLABEL"
     fi
     if [ -z ${VAST_ID+x} ]; then
       # Environment variable VAST_ID was NOT set
-      VAST_ID="$(cat ~/.vast_containerlabel)"
-      echo "2VAST_ID: $VAST_ID"
+      VAST_ID="$VAST_CONTAINERLABEL"
     fi
-    echo "3VAST_ID: $VAST_ID"
+    echo "VAST_ID: $VAST_ID"
 }

@@ -13,7 +13,7 @@ module.exports.fetchVastInstances = async () => {
   const { status, data = [] } = await axios.get('https://console.vast.ai/api/v0/instances', {
     headers: { Authorization: `Bearer ${ config.apiKey }` },
   })
-  await utils.archiveJsonFile('instances', data, `${ Date.now() }-${ data?.length }.json`)
+  await utils.archiveJsonFile('instances', data, `${ Date.now() }-${ data?.instances?.length }.json`)
   return data
 }
 

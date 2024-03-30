@@ -167,7 +167,7 @@ module.exports.sortInstancesByPerformanceRation = (instances = []) => {
 }
 
 const archiveJsonFile = async (type, data, name = `${ Date.now() }.json`) => {
-  await fs.outputJson(path.join(__dirname, '../..', 'archive', 'type', name), data, { spaces: 2 }).catch(console.error)
+  await fs.outputJson(path.join(__dirname, '../..', 'archive', type, name), data, { spaces: 2 }).catch(console.error)
 }
 
 module.exports.archiveJsonFile = archiveJsonFile

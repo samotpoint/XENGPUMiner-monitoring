@@ -4,7 +4,7 @@
   <img src="docs/xenblocks-app-banner.png" alt="Xenblocks App" style="height:350px"/>
 </div>
 
-> This repo aim to make it easier for people to install/monitor [shanhaicoder/XENGPUMiner](https://github.com/shanhaicoder/XENGPUMiner) and it does not modify nor alter the official code in any way.
+> This repo aim to make it easier for people to install/monitor [samotpoint/XENGPUMiner.git](https://github.com/samotpoint/XENGPUMiner) and it does not modify nor alter the official xenblocks.app code in any way.
 
 ### Assuming:
 

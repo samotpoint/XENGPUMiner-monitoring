@@ -3,7 +3,7 @@
 source scripts/utils.sh
 cd_project_root
 
-printSubTitle "Installing software requirements and cloning XENGPUMiner official repo"
+printSubTitle "Installing software requirements and cloning XENGPUMiner official xenblocks.app repo"
 
 # Ensure Account and CUDA Arch
 ensure_account
@@ -37,8 +37,8 @@ install_package "screen"
 install_package "nano"
 
 if [ ! -d "XENGPUMiner" ]; then
-  printTitle "Cloning XENGPUMiner official repo"
-  git clone https://github.com/shanhaicoder/XENGPUMiner.git || echo "Skip cloning shanhaicoder/XENGPUMiner.git"
+  printTitle "Cloning XENGPUMiner official xenblocks.app repo"
+  git clone https://github.com/samotpoint/XENGPUMiner.git || echo "Skip cloning samotpoint/XENGPUMiner.git"
   cp watch.py XENGPUMiner/watch.py &>/dev/null || echo "Skip cp watch.py"
 fi
 

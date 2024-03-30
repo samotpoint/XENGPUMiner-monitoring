@@ -7,3 +7,7 @@ docs/
 XENGPUMiner/
 /README.md
 /account.txt
+.env
+node_modules/
+vast-optimizer/
+/archive/

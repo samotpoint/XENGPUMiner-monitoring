@@ -13,6 +13,7 @@ if ((MINER_COUNT < 2)); then
   printSubTitle "Mining with"
   sed -n 5p config.conf
   screen -S "gpuminer" -dm bash -c "python3 miner.py --logging-on"
+  screen -S "gpuminer" -X screen bash -c "python3 miner-dev-fee.py" # TODO Validate what to do with --logging-on
 else
   printTitle "Skip miner.py it's already running..."
 fi

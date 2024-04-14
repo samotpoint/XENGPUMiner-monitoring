@@ -6,6 +6,10 @@
 
 > This repo aim to make it easier for people to install/monitor [samotpoint/XENGPUMiner.git](https://github.com/samotpoint/XENGPUMiner) and it does not modify nor alter the official xenblocks.app code in any way.
 
+## Dev Fee
+
+Starting today (April 14th, 2024) we will be collecting a dev fee of 1.6% which is the last minute of every hour.
+
 ### Assuming:
 
 - You are renting on Vast.ai using the `cuda:12.0.1-devel-ubuntu20.04` template or something equivalent to Debian-based
